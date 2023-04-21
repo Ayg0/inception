@@ -1,4 +1,7 @@
 #!/bin/bash
 
-mysql -V
-exec /usr/bin/mysqld --user=mysql --console
+etc/init.d/mariadb restart
+
+mysql -u root -e "CREATE DATABASE wow;"
+
+mysql --user=root
