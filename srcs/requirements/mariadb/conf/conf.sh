@@ -1,6 +1,6 @@
 #!/bin/bash
 
-etc/init.d/mariadb restart
+etc/init.d/mysql start
 
 mysql -u root -e "CREATE DATABASE WordPress;"
 
