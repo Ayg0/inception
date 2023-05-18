@@ -1,0 +1,17 @@
+version: "3.1"
+
+services:
+  mariadb:
+    build:  requirements/mariadb/
+    image:  mariadb
+    # ports:
+    #   - "3306:3306"
+    # networks: 
+    #   - DEF
+    # volumes:
+    #   - ./mariadb_volume:/mariadb
+    tty:  true
+    restart: always
+networks:
+  DEF:
+    driver: bridge

@@ -1,6 +1,8 @@
 FROM debian:buster
 RUN apt-get update; \
 	apt-get upgrade; \
-	apt-get install mariadb-server -y;
-COPY conf /confs
-CMD ["bash", "confs/conf.sh"]
+	mkdir /confs;\
+	apt-get install -y mariadb-server;
+COPY conf/conf.sh /confs
+# COPY conf/my.cnf /etc/mysql/
+ENTRYPOINT ["bash", "confs/conf.sh"]
