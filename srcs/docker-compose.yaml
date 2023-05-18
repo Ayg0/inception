@@ -10,7 +10,7 @@ services:
     networks: 
       - DEF
     volumes:
-      - ./mariadb_volume:/var/lib/mysql
+      - maria:/var/lib/mysql
     restart: always
   nginx:
     build:  requirements/nginx/
@@ -22,6 +22,14 @@ services:
     # volumes:
     #   - ./mariadb_volume:/var/lib/mysql
     restart: always
+volumes:
+  maria:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/orayne/inception/srcs/mariadb_volume
+
 networks:
   DEF:
     driver: bridge
