@@ -4,14 +4,25 @@ services:
   mariadb:
     build:  requirements/mariadb/
     image:  mariadb
-    # ports:
-    #   - "3306:3306"
-    # networks: 
-    #   - DEF
+    container_name: maria
+    ports:
+      - "3306:3306"
+    networks: 
+      - DEF
+    volumes:
+      - ./mariadb_volume:/var/lib/mysql
+    restart: always
+  nginx:
+    build:  requirements/nginx/
+    image:  nxing
+    ports:
+      - "443:443"
+    networks: 
+      - DEF
     # volumes:
-    #   - ./mariadb_volume:/mariadb
-    tty:  true
+    #   - ./mariadb_volume:/var/lib/mysql
     restart: always
 networks:
   DEF:
     driver: bridge
+
