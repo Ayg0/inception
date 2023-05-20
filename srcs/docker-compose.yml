@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  mariadb:
+    build: requirements/mariadb
+    image: mariadb:local
+    container_name: mariadb
+    networks:
+      - def
+    volumes:
+      - db_volume:/var/lib/mysql
+    restart: always
+  wordpress:
+    build: requirements/wordpress
+    image: wordpress:local
+    container_name: wordpress
+    networks:
+      - def
+    volumes:
+      - blog_volume:/blog
+    restart: always
+  nginx:
+    build: requirements/nginx
+    image: nginx:local
+    container_name: nginx
+    ports:
+      - "443:443"
+    networks:
+      - def
+    volumes:
+      - blog_volume:/blog
+    restart: always
+volumes:
+  db_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o:    bind
+      device: /home/orayne/projects/inc/srcs/db_volume
+  blog_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o:    bind
+      device: /home/orayne/projects/inc/srcs/blog_volume
+
+networks:
+  def:
+    driver: bridge
