@@ -8,5 +8,4 @@ openssl req -x509 -nodes -days 365 -subj \
             -addext "subjectAltName=DNS:ted-dafi.42.fr" \
             -newkey rsa:2048 -keyout /openssl/ssl_prv.key \
             -out /openssl/ted-dafi.42.fr.crt;
-# echo "localhost ted-dafi.42.fr;" >> /etc/hosts
 nginx -g "daemon off;"
