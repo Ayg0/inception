@@ -5,6 +5,8 @@ services:
     build: requirements/mariadb
     image: mariadb:local
     container_name: mariadb
+    env_file:
+      - .env
     networks:
       - def
     volumes:
@@ -16,6 +18,8 @@ services:
     build: requirements/wordpress
     image: wordpress:local
     container_name: wordpress
+    env_file:
+      - .env
     networks:
       - def
     volumes:
@@ -33,6 +37,8 @@ services:
       - def
     volumes:
       - blog_volume:/blog
+    env_file:
+      - .env
     restart: always
 volumes:
   db_volume:
@@ -40,13 +46,13 @@ volumes:
     driver_opts:
       type: none
       o:    bind
-      device: /home/orayne/inception/srcs/db_volume
+      device: /d
   blog_volume:
     driver: local
     driver_opts:
       type: none
       o:    bind
-      device: /home/orayne/inception/srcs/blog_volume
+      device: /b
 
 networks:
   def:
