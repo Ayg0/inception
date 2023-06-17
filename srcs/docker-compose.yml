@@ -23,7 +23,7 @@ services:
     networks:
       - def
     volumes:
-      - blog_volume:/blog
+      - wp_volume:/blog
     restart: always
   nginx:
     depends_on:
@@ -36,7 +36,7 @@ services:
     networks:
       - def
     volumes:
-      - blog_volume:/blog
+      - wp_volume:/blog
     env_file:
       - .env
     restart: always
@@ -47,7 +47,7 @@ volumes:
       type: none
       o:    bind
       device: /home/ted-dafi/data/db
-  blog_volume:
+  wp_volume:
     driver: local
     driver_opts:
       type: none
